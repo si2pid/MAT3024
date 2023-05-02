@@ -1,0 +1,56 @@
+---
+title: "T1"
+output: html_document
+date: '2023-05-02'
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(dplyr)
+```
+
+Q1
+```{r}
+Student <- read.csv("C:\\Users\\User\\Downloads\\SOCR-HeightWeight100.csv", header = T)
+
+plot <- ggplot(data = Student, aes(x = Weight, y = Height)) +
+  geom_point() + 
+  geom_smooth(method = lm)+
+  labs(title = "Scatter plot of Weight and Height")
+
+plot
+
+#Comment : 1. H and W have a linear relationship  2.Positive relationship (higher,Heavier)  3. Moderately linear
+
+
+```
+Q2
+```{r}
+Cuisine <- read.csv("C:\\Users\\User\\Downloads\\RatingCuisine.csv", header = T, stringsAsFactors = T)
+
+top10_cuisine <- Cuisine %>% 
+  group_by(Rcuisine) %>%
+  summarise(frequency = n()) %>%
+  arrange(desc(frequency)) %>%
+  slice(1:10)
+
+top10_cuisine
+
+plot2 <- ggplot(data = top10_cuisine, aes(x=Rcuisine, y=frequency)) +
+  geom_bar(stat = "identity" )+
+  theme(axis.text.x=element_text(angle=45, hjust=1))+
+  labs(x ="Cuisine type", y ="Frequency")
+plot2
+
+
+```
+
+Q3
+```{r}
+Students2 <- read.csv("C:\\Users\\User\\Downloads\\student-mat.csv", header = T)
+
+ggplot(data = Students2, aes(G3)) + 
+  geom_histogram(bins = 20, fill = "red")
+
+
+```
