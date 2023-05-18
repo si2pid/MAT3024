@@ -1,0 +1,44 @@
+---
+title: "Untitled"
+output: html_document
+date: '2023-05-25'
+---
+
+```{r}
+
+Data <- read.csv("C:\\Users\\User\\Downloads\\Chapter3.csv", header = T, stringsAsFactors = T)
+
+```
+
+# (b) Store the fitted values and residuals
+```{r}
+fit <- lm(y~x1+x2 ,data = Data)
+summary(fit)
+
+Data$Fitted <- fitted(fit)
+Data$Residual <- Data$y - Data$Fitted
+sum(Data$Residual)
+
+```
+
+#(c and d) Hypothesis Testing for the overall model and the individual regression coefficients
+```{r}
+summary(fit1)
+
+# For overall model p<0.05, thus at least one regressor is significant
+#B1 and B2 are also significant since p<0.05.
+```
+
+# (e) Construct the CI of the model parameters
+```{r}
+confint(fit,level = 0.95)
+```
+
+# (f) Create a new data for predictions
+```{r}
+new_data <- data.frame(x1=8,x2=275)
+
+predict(fit, new_data,interval = "confidence")
+predict(fit, new_data,interval = "prediction")
+
+```
