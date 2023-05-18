@@ -1,0 +1,45 @@
+---
+title: "W4 HW"
+output: html_document
+date: '2023-05-18'
+---
+
+```{r}
+rm(list = ls())
+library(ggplot2)
+```
+
+```{r}
+Automobiles <- read.csv("C:\\Users\\User\\Downloads\\C2 R Homework.csv")
+
+```
+
+```{r}
+plot <- ggplot(data = Automobiles, aes(y=y, x=x1))+
+  geom_point()+
+  geom_smooth(method = lm)
+
+plot
+```
+
+
+
+```{r}
+lm <- lm(y~x1, data = Automobiles)
+anova_result <- anova(lm)
+anova_result
+
+##Total variability in x that is accounted by y
+proportion_var <- anova_result$`Sum Sq`[1] / (anova_result$`Sum Sq`[1] + anova_result$`Sum Sq`[2]) #SSreg/SST
+
+
+```
+
+```{r}
+newdata <- data.frame(x1=275)
+
+predict(lm,newdata,interval = "confidence")
+predict(lm,newdata,interval = "prediction")
+
+*
+```
