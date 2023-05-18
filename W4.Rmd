@@ -1,0 +1,61 @@
+---
+title: "W4"
+output: html_document
+date: '2023-05-18'
+---
+
+
+```{r}
+library(ggplot2)
+```
+
+```{r}
+Rocket_Data <- read.csv("C:\\Users\\User\\Downloads\\Example2Dataset.csv")
+
+head(Rocket_Data)
+summary(Rocket_Data)
+```
+
+
+#Least square fit line
+```{r}
+plot <- ggplot(data=Rocket_Data, aes(x = Age.of.Propellant..weeks., y = Shear.Strength..psi.)) +
+  geom_point() +
+  geom_smooth(method=lm)+
+  
+  labs(x="AGe of Propellant (Weeks)",y="Shear Strength (psi)")
+
+plot
+
+```
+
+#Model parameters
+```{r}
+lm <- lm(Shear.Strength..psi. ~ Age.of.Propellant..weeks., data = Rocket_Data)
+
+summary(lm)
+
+Rocket_Data$Fitted <- fitted(lm)
+Rocket_Data$Residual <- Rocket_Data$Shear.Strength..psi.- Rocket_Data$Fitted
+
+ sum(Rocket_Data$Residual)
+ sum(Rocket_Data$Shear.Strength..psi.)
+ sum(Rocket_Data$Fitted) 
+
+```
+```{r}
+anova(lm)
+
+#Estimator of variance is MSE
+#From Pr(>F), p-value is low, indicating dependent model
+```
+
+
+```{r}
+confint(lm,level = 0.95)   #95%CI
+
+newdata <- data.frame(Age.of.Propellant..weeks. = 13.3625)     #Prediction
+predict(lm,newdata,interval = "confidence")
+predict(lm,newdata,interval = "prediction")
+
+```
