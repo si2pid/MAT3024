@@ -3,7 +3,7 @@ title: "Untitled"
 output: html_document
 date: '2023-05-25'
 ---
-
+#
 ```{r}
 remove(list=ls())
 Data<-read.csv(choose.files(),header = T,stringsAsFactors = T)
