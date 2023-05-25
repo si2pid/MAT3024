@@ -58,4 +58,5 @@ newdata <- data.frame(Age.of.Propellant..weeks. = 13.3625)     #Prediction
 predict(lm,newdata,interval = "confidence")
 predict(lm,newdata,interval = "prediction")
 
+#The prediction interval is always wider because it account for the uncertainty in population, plus the random varation of new data points.
 ```

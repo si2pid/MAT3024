@@ -20,7 +20,7 @@ plot <- ggplot(data = Student, aes(x = Weight, y = Height)) +
 
 plot
 
-#Comment : 1. H and W have a linear relationship  2.Positive relationship (higher,Heavier)  3. Moderately linear
+##Comment : 1. H and W have a linear relationship  2.Positive relationship (higher,Heavier)  3. Moderately linear
 
 
 ```
