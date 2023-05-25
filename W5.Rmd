@@ -3,7 +3,7 @@ title: "Untitled"
 output: html_document
 date: '2023-05-25'
 ---
-
+#
 ```{r}
 
 Data <- read.csv("C:\\Users\\User\\Downloads\\Chapter3.csv", header = T, stringsAsFactors = T)
